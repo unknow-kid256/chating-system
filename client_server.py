@@ -24,20 +24,20 @@ i = 0
 def create_message(message_parse):
     command = message_parse[0]
     data = message_parse[1:len(message_parse)+1]
-    return f"{len(name)}{name}{command}{len(data)}{data}".strip()
+    return (f"{len(name)}{name}{command}{len(data)}{data}".strip()).encode()
 
 
 while True:
     rlist, _, _ = select.select([client_socket], [], [], 0)
     if i == 0:
-        client_socket.send(create_message("0this is my name").encode())
+        client_socket.send(create_message("0this is my name"))
         i += 1
     if msvcrt.kbhit():
         key = msvcrt.getch()
         msg += key.decode()
         print(msg)
         if ord(key.decode()) == 13 or msg == 'quit':
-            client_socket.send(create_message(msg).encode())
+            client_socket.send(create_message(msg))
             msg = ""
         if msg == 'quit':
             break

@@ -56,7 +56,6 @@ def kick_action(selected_name):
     return f"{selected_name} has been kicked from the chat!"
 
 def mute_action(selected_name):
-    print(selected_name)
     selected_socket = users[selected_name]['socket']
     muted_socket_array.append(selected_socket)
     return "you cannot speak here"
